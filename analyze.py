@@ -28,13 +28,24 @@ def main(argv):
             file_result.write("VersionCode: %s \n" % versioncode)
             file_result.write("VersionName: %s \n" % versionname)
 
+            file_result.write('\n')
+            file_result.write('*' * 500)
+            file_result.write('\n\n')
+
             #get permissions
-            file_result.write("Permissions:\n")
+            file_result.write("Permissions:\n\n")
             outlist = output.split('\n')
             for line in outlist:
                 if line.startswith('uses-permission:'):
                     file_result.write(line.split('=')[1] + '\n')
-            file_result.write('Network Traffic Flow:\n')
+
+
+            file_result.write('\n')
+            file_result.write('*' * 500)
+            file_result.write('\n\n')
+
+            file_result.write('Network Traffic Flow:\n\n')
+
             file_result.close()
 
             #install app
@@ -85,15 +96,7 @@ def main(argv):
             print(cmd_uninstall)
             print(os.popen(cmd_uninstall).read())
 
-
-
-
-
-
-
             print('Analyze Finished!')
-
-
 
     else:
         print('Arguments Error! OR No such dir!\n')
