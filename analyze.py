@@ -57,18 +57,22 @@ def main(argv):
             file_path.close()
 
             #initial mitmdump
-            os.popen('nohup mitmdump -s script.py &')
+            os.popen('nohup mitmdump -s script.py & > mitm_log.txt &')
 
             #a = input()
             #monkey test
-            cmd_moneky = 'adb shell monkey -p %s --ignore-crashes --pct-touch 10  --pct-motion 10 --pct-trackball 20  --pct-nav 30 --pct-majornav 30 --throttle 10000 30' % (packagename)
+            cmd_moneky = 'adb shell monkey -p %s --ignore-crashes --pct-touch 20  --pct-motion 30 --pct-trackball 30  --pct-nav 10 --pct-majornav 10 --throttle 10000 50' % (packagename)
             print(os.popen(cmd_moneky).read())
 
             #kill mitmdump
             cmd = 'ps -ef | grep mitm'
-            output = os.popen(cmd).read()
-            pid = output.split('\n')[0].split(' ')[6]
-            print(pid)
+            output = os.popen(cmd).read().split(' ')
+            pid = ''
+            for i in output:
+    	        if re.compile('\d+').match(i):
+                    print(i)
+                    pid = i
+                    break
             cmd_kill = 'kill %s' % pid
             os.popen(cmd_kill)
 
