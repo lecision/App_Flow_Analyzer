@@ -14,5 +14,5 @@
 - ##### 执行命令：
           git clone https://github.com/lecision/App_Flow_Analyzer.git
           python3  analyze.py  apks_directory  results_directory
-		  			apks_direcotry(存放待分析app的目录)
-					  results_directory(存放分析结果的目录)
+	  	apks_direcotry(存放待分析app的目录)
+	  	results_directory(存放分析结果的目录)
